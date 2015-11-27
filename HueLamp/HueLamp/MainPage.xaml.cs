@@ -25,6 +25,9 @@ namespace HueLamp
         public MainPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new LampViewModel();
         }
+
+        public LampViewModel ViewModel { get; set; }
     }
 }
