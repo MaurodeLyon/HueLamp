@@ -8,10 +8,20 @@ namespace HueLamp
 {
     public class Lamp
     {
-        public string test1;
-        public string test2;
 
+        private string _test1;
+        public string test1
+        {
+            get { return _test1; }
+            set { _test1 = value; }
+        }
         
+        private string _test2;
+        public string test2
+        {
+            get { return _test2; }
+            set { _test2 = value; }
+        }
 
         public Lamp()
         {
@@ -19,13 +29,6 @@ namespace HueLamp
             test2 = "test2";
         }
 
-        public string getTest
-        {
-            get
-            {
-                return test1;
-            }
-        }
     }
 
     public class LampViewModel
@@ -34,6 +37,6 @@ namespace HueLamp
         public Lamp DEFAULTLAMP { get { return this.defaultLamp; } }
 
     }
-   
+
 
 }
