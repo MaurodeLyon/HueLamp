@@ -19,7 +19,6 @@
             <TextBlock Text="Saturation:" />
             <Slider/>
         </StackPanel>
-
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>    
