@@ -25,14 +25,25 @@ namespace HueLamp
         public MainPage()
         {
             this.InitializeComponent();
-            this.ViewModel = new LampViewModel();
+           // this.ViewModel = new LampViewModel();
+            DataContext = new MainViewModel();
         }
 
-        public LampViewModel ViewModel { get; set; }
+        //public LampViewModel ViewModel { get; set; }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Settings));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            String Fullcontents = (String)e.Parameter;
+            String[] splitContents = Fullcontents.Split(' ');
+
+            blah.Text = Fullcontents;
+
         }
     }
 }
