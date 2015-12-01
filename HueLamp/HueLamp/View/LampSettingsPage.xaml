@@ -24,9 +24,9 @@
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <!-- These commands appear on the right -->
-                <AppBarButton Icon="Accept" Label="Apply" Click="AppBarButton_Click"/>
+                <AppBarButton Icon="Accept" Label="Apply"/>
                 <AppBarSeparator />
-                <AppBarButton Icon="Cancel" Label="Cancel" Click="CancelButton_Click_1" />
+                <AppBarButton Icon="Cancel" Label="Cancel"  />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

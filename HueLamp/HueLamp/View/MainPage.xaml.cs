@@ -29,5 +29,10 @@ namespace HueLamp
         }
 
         public LampViewModel ViewModel { get; set; }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Settings));
+        }
     }
 }

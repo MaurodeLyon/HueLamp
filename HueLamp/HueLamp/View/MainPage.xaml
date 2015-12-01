@@ -19,7 +19,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <!-- These commands appear on the right -->
-            <AppBarButton Icon="Sync" Label="Connect" />
+            <AppBarButton Icon="Sync" Label="Connect" Click="AppBarButton_Click" />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
