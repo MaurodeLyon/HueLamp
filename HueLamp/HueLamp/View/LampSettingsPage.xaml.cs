@@ -25,6 +25,10 @@ namespace HueLamp
         public LampSettingsPage()
         {
             this.InitializeComponent();
+            Test.Fill(new SolidColorBrush())
         }
+
+
     }
 }
+    

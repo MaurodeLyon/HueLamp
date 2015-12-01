@@ -12,7 +12,28 @@
             <TextBlock Text="HUEHEUEHUEApp" HorizontalAlignment="Center"/>
 
             <!-- replace with Lamps-->
-            <TextBlock Text="{x:Bind ViewModel.DEFAULTLAMP.test1, Mode=OneWay}"/>
+            
+            <TextBlock Text="Nothing here" x:Name="blah"/>
+
+            <ListView ItemsSource="{Binding Path=Items}" Grid.Row="1" Height="500" ScrollViewer.VerticalScrollBarVisibility="Auto"
+   ScrollViewer.VerticalScrollMode="Enabled">
+                <ListView.ItemTemplate >
+                    
+                    
+                    <DataTemplate >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" FontSize="48" DoubleTapped="TextBlock_DoubleTapped"/>
+
+
+                        </StackPanel>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+
+            </ListView>
+
         </StackPanel>
     </Grid>
 

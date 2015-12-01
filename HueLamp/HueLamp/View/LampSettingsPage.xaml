@@ -18,6 +18,7 @@
             <Slider/>
             <TextBlock Text="Saturation:" />
             <Slider/>
+            <Rectangle Height="25" Width="100" x:Name="Test"/>            
         </StackPanel>
     </Grid>
     <Page.BottomAppBar>
