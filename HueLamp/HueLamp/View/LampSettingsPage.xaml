@@ -13,11 +13,11 @@
             <TextBlock Text="Status:" />
             <ToggleSwitch />
             <TextBlock Text="Brightness:" />
-            <Slider/>
+            <Slider x:Name="BRI" ValueChanged="BRI_ValueChanged" />
             <TextBlock Text="Hue:" />
-            <Slider/>
+            <Slider x:Name="HUE" ValueChanged="BRI_ValueChanged"/>
             <TextBlock Text="Saturation:" />
-            <Slider/>
+            <Slider x:Name="SAT" ValueChanged="BRI_ValueChanged"/>
             <Rectangle Height="25" Width="100" x:Name="Test"/>            
         </StackPanel>
     </Grid>
