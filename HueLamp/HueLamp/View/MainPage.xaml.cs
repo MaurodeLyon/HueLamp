@@ -45,5 +45,10 @@ namespace HueLamp
             blah.Text = Fullcontents;
 
         }
+
+        private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LampSettingsPage));
+        }
     }
 }

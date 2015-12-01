@@ -22,7 +22,7 @@
                     
                     <DataTemplate >
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding}" FontSize="48"/>
+                            <TextBlock Text="{Binding}" FontSize="48" DoubleTapped="TextBlock_DoubleTapped"/>
 
 
                         </StackPanel>
