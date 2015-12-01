@@ -26,5 +26,17 @@ namespace HueLamp
         {
             this.InitializeComponent();
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {   
+            Frame.Navigate(typeof(MainPage),IPBOX.Text + " " + PORTBOX.Text + " " + USERNAMEBOX.Text);
+            
+        }
+
+        private void CancelButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(Frame.CanGoBack)
+            Frame.GoBack();
+        }
     }
 }
