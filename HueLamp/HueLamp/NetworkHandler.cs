@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace HueLamp
 {
@@ -20,16 +21,23 @@ namespace HueLamp
             this.ip = ip;
             this.port = port;
             this.username = username;
+            codedusername = "";
             getUsername();
-            setLamp("1", "true", "254", "4444", "254");
+
         }
 
-        private async void setLamp(string id, string state, string bri, string hue, string sat)
+        //set lamp state
+        private async void setLampState(string id, string state)
         {
-            string data = "{  \"on\": " + state + ",\"bri\": " + bri + ", \"hue\": " + hue + ", \"sat\": " + sat + "  }";
-            await PutCommand("api/27e699e71558581c0ab6f8c40bb8236/lights/1/state",data);
+            string data = "{\"on\":" + state + "}";
+            await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+        }
 
-            //await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+        //separate lamp state and lamp properties
+        private async void setLamp(string id, string bri, string hue, string sat)
+        {
+            string data = "{\"bri\": " + bri + ", \"hue\": " + hue + ", \"sat\": " + sat + "  }";
+            await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
         }
 
         private async void getUsername()
