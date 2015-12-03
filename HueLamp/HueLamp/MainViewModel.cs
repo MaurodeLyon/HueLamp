@@ -9,7 +9,7 @@ namespace HueLamp
 {
     class MainViewModel
     {
-        private ObservableCollection<String> _items;
+        private ObservableCollection<string> _items;
 
         public MainViewModel()
         {
