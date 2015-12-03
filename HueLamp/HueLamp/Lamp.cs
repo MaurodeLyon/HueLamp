@@ -9,34 +9,49 @@ namespace HueLamp
     public class Lamp
     {
 
-        private string _test1;
-        public string test1
+
+        private string _on;
+        public string on
         {
-            get { return _test1; }
-            set { _test1 = value; }
-        }
-        
-        private string _test2;
-        public string test2
-        {
-            get { return _test2; }
-            set { _test2 = value; }
+            get { return _on; }
+            set { _on = value; }
         }
 
-        public Lamp()
+        private string _bri;
+
+        public string bri
         {
-            test1 = "test";
-            test2 = "test2";
+            get { return _bri; }
+            set { _bri = value; }
+        }
+
+        private string _hue;
+
+        public string hue
+        {
+            get { return _hue; }
+            set { _hue = value; }
+        }
+
+        private string _sat;
+
+        public string sat
+        {
+            get { return _sat; }
+            set { _sat = value; }
+        }
+
+
+
+
+        public Lamp(string on, string bri, string hue, string sat)
+        {
+            _on = on;
+            _bri = bri;
+            _hue = hue;
+            _sat = sat;
+
         }
 
     }
-
-    public class LampViewModel
-    {
-        private Lamp defaultLamp = new Lamp();
-        public Lamp DEFAULTLAMP { get { return this.defaultLamp; } }
-
-    }
-
-
 }
