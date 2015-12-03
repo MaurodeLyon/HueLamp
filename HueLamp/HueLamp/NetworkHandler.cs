@@ -5,25 +5,30 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace HueLamp
 {
     class NetworkHandler
     {
+        private MainViewModel mainViewModel;
         private string ip;
         private string port;
         private string username;
         private string codedusername;
         private string allInfo;
+        private int amountOfLamps;
 
-        public NetworkHandler(string ip, string port, string username)
+        public NetworkHandler(string ip, string port, string username, MainViewModel mainViewModel)
         {
             this.ip = ip;
             this.port = port;
             this.username = username;
             codedusername = "";
+            amountOfLamps = 0;
+            this.mainViewModel = mainViewModel;
             getUsername();
-
         }
 
         //set lamp state
@@ -45,8 +50,29 @@ namespace HueLamp
             string post = await PostCommand("api", "{\"devicetype\":\"MijnApp#{" + username + "}\"}");
             string[] data = post.Split('\"');
             codedusername = data[5];
+            getAllInfo();
+        }
+
+        private async void getAllInfo()
+        {
             allInfo = await GetCommand("api/" + codedusername);
-            string lamp = await getLamp("1");
+            getAmountOfLamps();
+        }
+
+        private async void getAmountOfLamps()
+        {
+            string lampInfo;
+            string[] list;
+            int n = 1;
+            do
+            {
+                amountOfLamps++;
+                lampInfo = await getLamp(n.ToString());
+                list = lampInfo.Split('"');
+                n++;
+            }
+            while (list[1] != "error");
+            amountOfLamps--;
         }
 
         public async Task<string> getLamp(string IdLamp)
