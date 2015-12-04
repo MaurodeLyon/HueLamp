@@ -16,7 +16,7 @@
                     <DataTemplate>
                         <RelativePanel Tapped="RelativePanel_Tapped">
                             <Rectangle x:Name="Hue" Height="50" Width="5000" Fill="{Binding brush}" Tapped="Hue_Tapped"/>
-                            <TextBlock x:Name="Lampname" Height="25"  Text="{Binding Lamp}" FontSize="20" Tapped="Lampname_Tapped"/>
+                            <TextBlock x:Name="Lampname" Height="25"  Text="{Binding Id}" FontSize="20" Tapped="Lampname_Tapped"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
