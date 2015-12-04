@@ -69,8 +69,13 @@ namespace HueLamp
                 receivedData = await getLamp(n.ToString());
                 list = receivedData.Split('"');
                 if (list[1] != "error")
-                    mainViewModel.Lamps.Add(new Lamp(list[4], list[6], list[8], list[10]));
-                
+                {
+                    string on = list[4].Substring(1, list[4].Length - 2);
+                    string bri = list[6].Substring(1, list[4].Length - 3);
+                    string hue = list[8].Substring(1, list[4].Length - 2);
+                    string sat = list[10].Substring(1, list[4].Length - 3);
+                    mainViewModel.Lamps.Add(new Lamp(on, bri, hue, sat));
+                }
                 n++;
             }
         }
