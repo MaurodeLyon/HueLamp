@@ -9,28 +9,25 @@ namespace HueLamp
 {
     class MainViewModel
     {
-        private ObservableCollection<String> _items;
+        private NetworkHandler _networkHandler;
+        private ObservableCollection<Lamp> _lamps;
+
+        public NetworkHandler NetworkHandler
+        {
+            get { return _networkHandler; }
+            set { _networkHandler = value; }
+        }
+
+        public ObservableCollection<Lamp> Lamps
+        {
+            get { return _lamps; }
+            set { _lamps = value; }
+        }
+
 
         public MainViewModel()
         {
-            _items = new ObservableCollection<String>();
-            _items.Add("Watsup");
-            _items.Add("Watsup2");
-            _items.Add("Watsup3");
-            _items.Add("yo");
-            _items.Add("yo2");
-            _items.Add("yo3");
-            _items.Add("yo4");
-            _items.Add("yo5");
-            _items.Add("yo6");
-
-            _items.Add("");
-
-        }
-
-        public ObservableCollection<String> Items
-        {
-            get { return _items; }
+            _lamps = new ObservableCollection<Lamp>();
         }
     }
 }

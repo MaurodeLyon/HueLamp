@@ -28,15 +28,14 @@ namespace HueLamp
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {   
-            Frame.Navigate(typeof(MainPage),IPBOX.Text + " " + PORTBOX.Text + " " + USERNAMEBOX.Text);
-            new NetworkHandler(IPBOX.Text,PORTBOX.Text,USERNAMEBOX.Text);
+        {
+            Frame.Navigate(typeof(MainPage), IPBOX.Text + " " + PORTBOX.Text + " " + USERNAMEBOX.Text);
         }
 
         private void CancelButton_Click_1(object sender, RoutedEventArgs e)
         {
-            if(Frame.CanGoBack)
-            Frame.GoBack();
+            if (Frame.CanGoBack)
+                Frame.GoBack();
         }
     }
 }
