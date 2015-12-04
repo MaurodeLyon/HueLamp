@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace HueLamp
 {
@@ -25,21 +27,31 @@ namespace HueLamp
             this.ip = ip;
             this.port = port;
             this.username = username;
-            codedusername = "";
             amountOfLamps = 0;
             this.mainViewModel = mainViewModel;
-            getUsername();
+            
+            if (MainPage.LOCAL_SETTINGS.Values["username"]!= null)
+            {
+                codedusername =(String) MainPage.LOCAL_SETTINGS.Values["username"];
+            }
+            else { codedusername = "";
+                getUsername();
+            }
+            
+            
+
+           
         }
 
         //set lamp state
-        private async void setLampState(string id, string state)
+        public async void setLampState(string id, string state)
         {
             string data = "{\"on\":" + state + "}";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
         }
 
         //separate lamp state and lamp properties
-        private async void setLamp(string id, string bri, string hue, string sat)
+        public async void setLamp(string id, string bri, string hue, string sat)
         {
             string data = "{\"bri\": " + bri + ", \"hue\": " + hue + ", \"sat\": " + sat + "  }";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
@@ -50,13 +62,26 @@ namespace HueLamp
             string post = await PostCommand("api", "{\"devicetype\":\"MijnApp#{" + username + "}\"}");
             string[] data = post.Split('\"');
             codedusername = data[5];
+            MainPage.LOCAL_SETTINGS.Values["username"] = codedusername;
             getAllInfo();
         }
 
         private async void getAllInfo()
         {
-            allInfo = await GetCommand("api/" + codedusername);
-            getAmountOfLamps();
+            allInfo = await GetCommand("api/" + codedusername + "/lights");
+            JObject o = JObject.Parse(allInfo);
+            foreach(var i in o)
+            {
+                Debug.WriteLine(i.ToString());
+                var light = o["" + i.Key];
+                var state = light["state"];
+
+                if(int.Parse(i.Key.ToString()) != 10)
+                mainViewModel.Lamps.Add(new Lamp(int.Parse(i.Key),state["on"].ToString(),state["bri"].ToString(),state["hue"].ToString(),state["sat"].ToString()));
+            }
+
+            //getAmountOfLamps();
+
         }
 
         private async void getAmountOfLamps()
@@ -64,12 +89,14 @@ namespace HueLamp
             string lampInfo;
             string[] list;
             int n = 1;
+
+            
             do
             {
                 amountOfLamps++;
                 lampInfo = await getLamp(n.ToString());
                 list = lampInfo.Split('"');
-                mainViewModel.Lamps.Add(new Lamp(n,list[4],list[6],list[8],list[10]));
+                mainViewModel.Lamps.Add(new Lamp(1,list[4],list[6],list[8],list[10]));
                 n++;
             }
             while (list[1] != "error");

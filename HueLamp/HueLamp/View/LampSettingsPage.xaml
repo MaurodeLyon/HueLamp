@@ -8,26 +8,26 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="LampNaam" HorizontalAlignment="Center" FontSize="48"/>
+        <TextBlock x:Name="NAME" Text="LampNaam" HorizontalAlignment="Center" FontSize="48"/>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock Text="Status:" />
-            <ToggleSwitch />
+            <ToggleSwitch x:Name="STATUS" Toggled="Statustoggle"/>
             <TextBlock Text="Brightness:" />
-            <Slider x:Name="BRI" ValueChanged="BRI_ValueChanged" />
+            <Slider x:Name="BRI" ValueChanged="BRI_ValueChanged" Maximum="254" />
             <TextBlock Text="Hue:" />
-            <Slider x:Name="HUE" ValueChanged="BRI_ValueChanged"/>
+            <Slider x:Name="HUE" ValueChanged="BRI_ValueChanged" Maximum="65535"/>
             <TextBlock Text="Saturation:" />
-            <Slider x:Name="SAT" ValueChanged="BRI_ValueChanged"/>
-            <Rectangle Height="25" Width="100" x:Name="Test"/>            
+            <Slider x:Name="SAT" ValueChanged="BRI_ValueChanged" Maximum="254"/>
+            <Rectangle Height="25" Width="100" x:Name="Test" />            
         </StackPanel>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <!-- These commands appear on the right -->
-                <AppBarButton Icon="Accept" Label="Apply"/>
+                <AppBarButton Icon="Send" Label="Send" Click="AppBarButton_Click"/>
                 <AppBarSeparator />
-                <AppBarButton Icon="Cancel" Label="Cancel"  />
+                <AppBarButton Icon="Back" Label="Back"  Click="AppBarButton_Click_1"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
