@@ -8,6 +8,13 @@ namespace HueLamp
 {
     public class Lamp
     {
+        private int _id;
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
 
         private string _on;
@@ -44,8 +51,9 @@ namespace HueLamp
 
 
 
-        public Lamp(string on, string bri, string hue, string sat)
+        public Lamp(int id, string on, string bri, string hue, string sat)
         {
+            _id = id;
             _on = on;
             _bri = bri;
             _hue = hue;

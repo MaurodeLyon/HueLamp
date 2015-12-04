@@ -69,7 +69,7 @@ namespace HueLamp
                 amountOfLamps++;
                 lampInfo = await getLamp(n.ToString());
                 list = lampInfo.Split('"');
-                mainViewModel.Lamps.Add(new Lamp(list[4],list[6],list[8],list[10]));
+                mainViewModel.Lamps.Add(new Lamp(n,list[4],list[6],list[8],list[10]));
                 n++;
             }
             while (list[1] != "error");
