@@ -34,6 +34,7 @@ namespace HueLamp
         {
             string data = "{\"on\":" + state + "}";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+            getAmountOfLamps();
         }
 
         //separate lamp state and lamp properties
@@ -41,6 +42,7 @@ namespace HueLamp
         {
             string data = "{\"bri\": " + bri + ", \"hue\": " + hue + ", \"sat\": " + sat + "  }";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+            getAmountOfLamps();
         }
 
         private async void getUsername()
