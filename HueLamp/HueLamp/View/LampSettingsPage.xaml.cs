@@ -26,8 +26,6 @@ namespace HueLamp
         public LampSettingsPage()
         {
             this.InitializeComponent();
-            Test.Fill = new SolidColorBrush(Color.FromArgb(255, 100,100,100));
-            DataContext = new LampSettingsModel();
         }
 
         private void BRI_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

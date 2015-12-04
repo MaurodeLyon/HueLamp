@@ -25,7 +25,7 @@ namespace HueLamp
         public MainPage()
         {
             this.InitializeComponent();
-           // this.ViewModel = new LampViewModel();
+            // this.ViewModel = new LampViewModel();
             DataContext = new MainViewModel();
         }
 
@@ -40,10 +40,13 @@ namespace HueLamp
         {
             base.OnNavigatedTo(e);
             String Fullcontents = (String)e.Parameter;
-            String[] splitContents = Fullcontents.Split(' ');
-
-            blah.Text = Fullcontents;
-
+            if (Fullcontents != "")
+            {
+                String[] splitContents = Fullcontents.Split(' ');
+                MainViewModel m = DataContext as MainViewModel;
+                m.NetworkHandler = new NetworkHandler(splitContents[0], splitContents[1], splitContents[2],m);
+                blah.Text = Fullcontents;
+            }
         }
 
         private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
