@@ -27,7 +27,7 @@ namespace HueLamp
     {
         public static ApplicationDataContainer LOCAL_SETTINGS = ApplicationData.Current.LocalSettings;
         //LOCAL_SETTINGS.Values["ip"]= "localhost";
-
+        Random rnd;
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,7 +36,7 @@ namespace HueLamp
             Debug.WriteLine(LOCAL_SETTINGS.Values["port"]);
             Debug.WriteLine(LOCAL_SETTINGS.Values["user"]);
             Debug.WriteLine(LOCAL_SETTINGS.Values["username"]);
-
+            rnd = new Random();
             //LOCAL_SETTINGS.Values["ip"] = null;
             //LOCAL_SETTINGS.Values["username"] = null;
             //LOCAL_SETTINGS.Values["user"] = null;
@@ -101,6 +101,31 @@ namespace HueLamp
             TextBlock block = (TextBlock)sender;
             Lamp e2 = (Lamp)block.DataContext;
             Frame.Navigate(typeof(LampSettingsPage), new NavigateWrapper(e2.Id, (MainViewModel)DataContext));
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainViewModel m = (MainViewModel)DataContext;
+
+            foreach (Lamp l in m.Lamps)
+            {
+                int bri, hue, sat;
+
+                
+
+                bri = rnd.Next(0, 254);
+                hue = rnd.Next(0, 65535) ;
+                
+                sat = rnd.Next(0, 254);
+                m.NetworkHandler.setLamp(l.Id.ToString(), bri.ToString(), hue.ToString(), sat.ToString());
+            }
+
+
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

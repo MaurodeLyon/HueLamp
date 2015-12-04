@@ -28,6 +28,8 @@
         <CommandBar>
             <!-- These commands appear on the right -->
             <AppBarButton Icon="Sync" Label="Connect" Click="AppBarButton_Click" />
+            <AppBarButton Icon="Admin" Label="Start"  Click="AppBarButton_Click_1"/>
+            <AppBarButton Icon="AddFriend" Label="Stop" Click="AppBarButton_Click_2"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
