@@ -32,6 +32,7 @@ namespace HueLamp
             if (MainPage.LOCAL_SETTINGS.Values["username"] != null)
             {
                 codedusername = (String)MainPage.LOCAL_SETTINGS.Values["username"];
+                getAllInfo();
             }
             else
             {

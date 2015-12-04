@@ -31,11 +31,15 @@ namespace HueLamp
         {
             this.InitializeComponent();
 
-            //Debug.WriteLine(LOCAL_SETTINGS.Values["ip"]);
-            //Debug.WriteLine(LOCAL_SETTINGS.Values["port"]);
-            //Debug.WriteLine(LOCAL_SETTINGS.Values["user"]);
-            //Debug.WriteLine(LOCAL_SETTINGS.Values["username"]);
+            Debug.WriteLine(LOCAL_SETTINGS.Values["ip"]);
+            Debug.WriteLine(LOCAL_SETTINGS.Values["port"]);
+            Debug.WriteLine(LOCAL_SETTINGS.Values["user"]);
+            Debug.WriteLine(LOCAL_SETTINGS.Values["username"]);
 
+            //LOCAL_SETTINGS.Values["ip"] = null;
+            //LOCAL_SETTINGS.Values["username"] = null;
+            //LOCAL_SETTINGS.Values["user"] = null;
+            //LOCAL_SETTINGS.Values["port"] = null;
 
             // this.ViewModel = new LampViewModel();
 
@@ -69,7 +73,7 @@ namespace HueLamp
                 {
                     LOCAL_SETTINGS.Values["ip"] = splitContents[0];
                     LOCAL_SETTINGS.Values["port"] = splitContents[1];
-                    LOCAL_SETTINGS.Values["user"] = splitContents[2];
+                    LOCAL_SETTINGS.Values["user"] = splitContents[2];   
                     
                 }
                 m.NetworkHandler = new NetworkHandler(LOCAL_SETTINGS.Values["ip"].ToString(),

@@ -14,9 +14,9 @@
             <ListView ItemsSource="{Binding Lamps}" Grid.Row="1" Height="500" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Enabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <RelativePanel>
+                        <RelativePanel >
                             <Rectangle x:Name="Hue" Height="50" Fill="Orange" Width="500"/>
-                            <TextBlock x:Name="Lampname" Height="25" Width="225" Text="Lampname" FontSize="20" Margin="188,0,187,0" />
+                            <TextBlock x:Name="Lampname" Height="25" Width="225" Text="Lampname" FontSize="20" Margin="188,0,187,0" DoubleTapped="TextBlock_DoubleTapped"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
