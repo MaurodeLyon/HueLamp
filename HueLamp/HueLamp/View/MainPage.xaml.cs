@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -47,7 +48,6 @@ namespace HueLamp
             if (LOCAL_SETTINGS.Values["username"] != null)
             {
                 MainViewModel m = DataContext as MainViewModel;
-               
                 m.NetworkHandler = new NetworkHandler(LOCAL_SETTINGS.Values["ip"].ToString(),
                 LOCAL_SETTINGS.Values["port"].ToString(), LOCAL_SETTINGS.Values["user"].ToString(), m);
             }
@@ -82,11 +82,25 @@ namespace HueLamp
             }
         }
 
-        private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void RelativePanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            TextBlock block = (TextBlock) sender;
+            RelativePanel block = (RelativePanel)sender;
             Lamp e2 = (Lamp)block.DataContext;
-            Frame.Navigate(typeof(LampSettingsPage),new NavigateWrapper(e2.Id,(MainViewModel)DataContext));
+            Frame.Navigate(typeof(LampSettingsPage), new NavigateWrapper(e2.Id, (MainViewModel)DataContext));
+        }
+
+        private void Hue_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Rectangle block = (Rectangle)sender;
+            Lamp e2 = (Lamp)block.DataContext;
+            Frame.Navigate(typeof(LampSettingsPage), new NavigateWrapper(e2.Id, (MainViewModel)DataContext));
+        }
+
+        private void Lampname_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            TextBlock block = (TextBlock)sender;
+            Lamp e2 = (Lamp)block.DataContext;
+            Frame.Navigate(typeof(LampSettingsPage), new NavigateWrapper(e2.Id, (MainViewModel)DataContext));
         }
     }
 }

@@ -64,7 +64,6 @@ namespace HueLamp
 
         private void BRI_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            
             Test.Fill = new SolidColorBrush(getColor());
         }
 
