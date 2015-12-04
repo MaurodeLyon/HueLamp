@@ -41,9 +41,6 @@ namespace HueLamp
             set { _sat = value; }
         }
 
-
-
-
         public Lamp(string on, string bri, string hue, string sat)
         {
             _on = on;
@@ -53,5 +50,9 @@ namespace HueLamp
 
         }
 
+        public override string ToString()
+        {
+            return "Lamp";
+        }
     }
 }

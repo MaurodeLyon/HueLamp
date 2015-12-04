@@ -9,31 +9,18 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="HUEHEUEHUEApp" HorizontalAlignment="Center"/>
-
-            <!-- replace with Lamps-->
-            
+            <TextBlock Text="Philips Hue" HorizontalAlignment="Center"/>
             <TextBlock Text="Nothing here" x:Name="blah"/>
-
-            <ListView ItemsSource="{Binding Path=Lamps}" Grid.Row="1" Height="500" ScrollViewer.VerticalScrollBarVisibility="Auto"
-   ScrollViewer.VerticalScrollMode="Enabled">
-                <ListView.ItemTemplate >
-                    
-                    
-                    <DataTemplate >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding}" FontSize="48" DoubleTapped="TextBlock_DoubleTapped"/>
-
-
-                        </StackPanel>
-
+            <ListView ItemsSource="{Binding Lamps}" Grid.Row="1" Height="500" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Enabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <RelativePanel>
+                            <Rectangle x:Name="Hue" Height="50" Fill="Orange" Width="500"/>
+                            <TextBlock x:Name="Lampname" Height="25" Width="225" Text="Lampname" FontSize="20" Margin="188,0,187,0" />
+                        </RelativePanel>
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
-
-
             </ListView>
-
         </StackPanel>
     </Grid>
 

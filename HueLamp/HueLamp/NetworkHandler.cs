@@ -18,7 +18,6 @@ namespace HueLamp
         private string username;
         private string codedusername;
         private string allInfo;
-        private int amountOfLamps;
 
         public NetworkHandler(string ip, string port, string username, MainViewModel mainViewModel)
         {
@@ -26,7 +25,6 @@ namespace HueLamp
             this.port = port;
             this.username = username;
             codedusername = "";
-            amountOfLamps = 0;
             this.mainViewModel = mainViewModel;
             getUsername();
         }
@@ -36,6 +34,7 @@ namespace HueLamp
         {
             string data = "{\"on\":" + state + "}";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+            getAmountOfLamps();
         }
 
         //separate lamp state and lamp properties
@@ -43,6 +42,7 @@ namespace HueLamp
         {
             string data = "{\"bri\": " + bri + ", \"hue\": " + hue + ", \"sat\": " + sat + "  }";
             await PutCommand("api/" + codedusername + "/lights/" + id + "/state", data);
+            getAmountOfLamps();
         }
 
         private async void getUsername()
@@ -61,20 +61,23 @@ namespace HueLamp
 
         private async void getAmountOfLamps()
         {
-            string lampInfo;
-            string[] list;
             int n = 1;
-            do
+            string receivedData = await getLamp(n.ToString());
+            string[] list = receivedData.Split('"');
+            while (list[1] != "error")
             {
-                amountOfLamps++;
-                lampInfo = await getLamp(n.ToString());
-                list = lampInfo.Split('"');
-                mainViewModel.Lamps.Add(new Lamp(list[4],list[6],list[8],list[10]));
+                receivedData = await getLamp(n.ToString());
+                list = receivedData.Split('"');
+                if (list[1] != "error")
+                {
+                    string on = list[4].Substring(1, list[4].Length - 2);
+                    string bri = list[6].Substring(1, list[4].Length - 3);
+                    string hue = list[8].Substring(1, list[4].Length - 2);
+                    string sat = list[10].Substring(1, list[4].Length - 3);
+                    mainViewModel.Lamps.Add(new Lamp(on, bri, hue, sat));
+                }
                 n++;
             }
-            while (list[1] != "error");
-            amountOfLamps--;
-            mainViewModel.Lamps.RemoveAt(mainViewModel.Lamps.Count - 1);
         }
 
         public async Task<string> getLamp(string IdLamp)
