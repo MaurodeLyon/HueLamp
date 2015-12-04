@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="LampSettingsModel.cs" />
+    <Compile Include="NavigateWrapper.cs" />
     <Compile Include="NetworkHandler.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="View\LampSettingsPage.xaml.cs">
