@@ -28,10 +28,6 @@ namespace HueLamp
         public MainViewModel()
         {
             _lamps = new ObservableCollection<Lamp>();
-            _lamps.Add(new Lamp("true", "233", "222", "123"));
-            _lamps.Add(new Lamp("true", "233", "222", "123"));
-            _lamps.Add(new Lamp("true", "233", "222", "123"));
-            _lamps.Add(new Lamp("true", "233", "222", "123"));
         }
     }
 }
