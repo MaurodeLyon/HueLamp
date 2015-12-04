@@ -18,7 +18,6 @@ namespace HueLamp
         private string username;
         private string codedusername;
         private string allInfo;
-        private int amountOfLamps;
 
         public NetworkHandler(string ip, string port, string username, MainViewModel mainViewModel)
         {
@@ -26,7 +25,6 @@ namespace HueLamp
             this.port = port;
             this.username = username;
             codedusername = "";
-            amountOfLamps = 0;
             this.mainViewModel = mainViewModel;
             getUsername();
         }
@@ -61,20 +59,18 @@ namespace HueLamp
 
         private async void getAmountOfLamps()
         {
-            string lampInfo;
-            string[] list;
             int n = 1;
-            do
+            string receivedData = await getLamp(n.ToString());
+            string[] list = receivedData.Split('"');
+            while (list[1] != "error")
             {
-                amountOfLamps++;
-                lampInfo = await getLamp(n.ToString());
-                list = lampInfo.Split('"');
-                mainViewModel.Lamps.Add(new Lamp(list[4],list[6],list[8],list[10]));
+                receivedData = await getLamp(n.ToString());
+                list = receivedData.Split('"');
+                if (list[1] != "error")
+                    mainViewModel.Lamps.Add(new Lamp(list[4], list[6], list[8], list[10]));
+                
                 n++;
             }
-            while (list[1] != "error");
-            amountOfLamps--;
-            mainViewModel.Lamps.RemoveAt(mainViewModel.Lamps.Count - 1);
         }
 
         public async Task<string> getLamp(string IdLamp)
